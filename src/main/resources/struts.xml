@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+
+    <package name="default" extends="struts-default">
+
+        <interceptors>
+            <interceptor name="roleInterceptor" class="com.d1l.interceptor.RoleInterceptor"/>
+            <interceptor-stack name="roleStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="roleInterceptor">
+                    <param name="allowedRoles">Admin</param>
+                </interceptor-ref>
+            </interceptor-stack>
+
+            <interceptor-stack name="roleStackUser">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="roleInterceptor">
+                    <param name="allowedRoles">Admin,Supplier,Customer</param>
+                </interceptor-ref>
+            </interceptor-stack>
+
+            <interceptor-stack name="disroleStackUser">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="roleInterceptor">
+                    <param name="disallowedRoles">Admin,Supplier,Customer</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-action-ref name="index"/>
+
+    </package>
+
+
+</struts>
