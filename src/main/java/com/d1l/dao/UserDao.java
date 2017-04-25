@@ -1,5 +1,7 @@
 package com.d1l.dao;
 
+import com.d1l.model.Customer;
+import com.d1l.model.Resume;
 import com.d1l.model.User;
 import com.d1l.util.HibernateUtil;
 import org.hibernate.Criteria;
@@ -26,13 +28,19 @@ public class UserDao {
     }
 
     public static void deleteUser(int id) {
-
         Session session = HibernateUtil.makeSession();
         try {
             session.beginTransaction();
-            User user = session.get(User.class, id);
 
+            User user = session.get(User.class, id);
             if (user != null) {
+                Customer customer = CustomerDao.getCustomerByUser(user);
+                if(customer != null) {
+                    Resume resume = ResumeDao.getResumeByCustomer(customer);
+                    if(resume != null) {
+                        ResumeDao.deleteResume(resume.getId());
+                    }
+                }
                 session.delete(user);
             }
             session.getTransaction().commit();
@@ -42,7 +50,6 @@ public class UserDao {
         } finally {
             session.close();
         }
-
     }
 
     public static User getUserById(int id) {
