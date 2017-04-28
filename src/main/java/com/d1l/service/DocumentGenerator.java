@@ -29,7 +29,7 @@ public class DocumentGenerator {
     private static final Font COMMON_FONT = FontFactory.getFont(FontFactory.HELVETICA, 20);
 
     public static void addWaterMark(PdfWriter writer) {
-        Phrase watermark = new Phrase("Autoparts", FontFactory.getFont(FontFactory.HELVETICA, 40,
+        Phrase watermark = new Phrase("Watermark", FontFactory.getFont(FontFactory.HELVETICA, 40,
                 Font.BOLD, Color.LIGHT_GRAY));
         Rectangle pageSize = writer.getPageSize();
         float x = (pageSize.getLeft() + pageSize.getRight()) / 2;
