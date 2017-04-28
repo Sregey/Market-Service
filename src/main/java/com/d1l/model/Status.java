@@ -6,8 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "job_service.category")
-public class Category {
+@Table(name = "marketservice.status")
+public class Status {
 
     @Id
     @Column(name = "id")
@@ -19,7 +19,6 @@ public class Category {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -27,9 +26,7 @@ public class Category {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
 }

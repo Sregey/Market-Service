@@ -3,12 +3,12 @@ package com.d1l.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "marketservice.role")
+@Table(name = "job_service.role")
 public class Role {
-
     @Id
     @Column(name = "id")
     private int id;
+
     @Column(name = "name")
     private String name;
 

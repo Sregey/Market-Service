@@ -3,9 +3,8 @@ package com.d1l.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "marketservice.user")
+@Table(name = "job_service.user")
 public class User {
-
     @Id
     @Column(name = "id")
     private int id;
