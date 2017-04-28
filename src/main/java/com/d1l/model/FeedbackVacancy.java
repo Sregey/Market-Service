@@ -1,14 +1,10 @@
 package com.d1l.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "marketservice.feedback_vacancy")
+@Table(name = "job_service.feedback_vacancy")
 public class FeedbackVacancy {
-
     @Id
     @Column(name = "id")
     private int id;

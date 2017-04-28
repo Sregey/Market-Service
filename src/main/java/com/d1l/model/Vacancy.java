@@ -3,9 +3,8 @@ package com.d1l.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "marketservice.vacancy")
+@Table(name = "job_service.vacancy")
 public class Vacancy {
-
     @Id
     @Column(name = "id")
     private int id;
@@ -28,11 +27,11 @@ public class Vacancy {
     @Column(name = "email")
     private String email;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="category_id")
     private Category category;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="supplier_id")
     private Company company;
 

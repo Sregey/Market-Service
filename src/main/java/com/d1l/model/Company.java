@@ -3,15 +3,16 @@ package com.d1l.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "marketservice.company")
+@Table(name = "job_service.company")
 public class Company {
-
     @Id
     @Column(name = "id")
     private int id;
+
     @Column(name = "company_name")
     private String companyName;
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="user_id")
     private User user;
 

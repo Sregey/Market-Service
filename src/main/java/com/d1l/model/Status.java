@@ -6,9 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "marketservice.status")
+@Table(name = "job_service.status")
 public class Status {
-
     @Id
     @Column(name = "id")
     private int id;

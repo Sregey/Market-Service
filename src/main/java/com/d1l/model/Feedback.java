@@ -4,9 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "marketservice.feedback")
+@Table(name = "job_service.feedback")
 public class Feedback {
-
     @Id
     @Column(name = "id")
     private int id;
@@ -17,15 +16,15 @@ public class Feedback {
     @Column(name = "message")
     private String message;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vacancy_id")
     private Vacancy vacancy;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "status_id")
     private Status status;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="resume_id")
     private Resume resume;
 

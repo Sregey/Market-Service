@@ -4,9 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "marketservice.resume")
+@Table(name = "job_service.resume")
 public class Resume {
-
     @Id
     @Column(name = "id")
     private int id;
@@ -35,7 +34,7 @@ public class Resume {
     @Column(name = "birthdate")
     private Date birthdate;
 
-    @OneToOne(optional = false)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="customer_id")
     private Customer customer;
 
