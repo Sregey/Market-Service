@@ -5,17 +5,20 @@ import javax.persistence.*;
 @Entity
 @Table(name = "marketservice.customer")
 public class Customer {
-
     @Id
     @Column(name = "id")
     private int id;
+
     @Column(name = "firstname")
     private String firstname;
+
     @Column(name = "lastname")
     private String lastname;
+
     @Column(name = "middlename")
     private String middlename;
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="user_id")
     private User user;
 

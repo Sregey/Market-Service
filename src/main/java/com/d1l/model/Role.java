@@ -5,10 +5,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "marketservice.role")
 public class Role {
-
     @Id
     @Column(name = "id")
     private int id;
+
     @Column(name = "name")
     private String name;
 

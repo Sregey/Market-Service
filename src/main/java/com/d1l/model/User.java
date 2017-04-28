@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "marketservice.user")
 public class User {
-
     @Id
     @Column(name = "id")
     private int id;
