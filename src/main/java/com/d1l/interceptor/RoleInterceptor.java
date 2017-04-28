@@ -17,6 +17,7 @@ import java.util.List;
 
 @SuppressWarnings("serial")
 public class RoleInterceptor extends AbstractInterceptor {
+    private static final String STRING_TO_LIST_SPLIT_PATTERN = "[ ]*,[ ]*";
     private List<String> allowedRoles = new ArrayList<String>();
     private List<String> disallowedRoles = new ArrayList<String>();
 
@@ -42,31 +43,30 @@ public class RoleInterceptor extends AbstractInterceptor {
     }
 
     public List<String> stringToList(String val) {
-        if (val != null) {
-            String[] list = val.split("[ ]*,[ ]*");
+        if (val != null && val.length() != 0) {
+            String[] list = val.split(STRING_TO_LIST_SPLIT_PATTERN);
             return Arrays.asList(list);
         } else {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         }
     }
 
-    public boolean isAllowed(HttpServletRequest request, Object action) throws Exception {
-
-        HttpSession session=request.getSession(false);
+    private boolean isAllowed(HttpServletRequest request, Object action) throws Exception {
+        HttpSession session = request.getSession(false);
         boolean result = false;
         String loginRole = null;
 
-        if (session.getAttribute("login")!=null) {
+        if (session.getAttribute("login") != null) {
             String login = (String) session.getAttribute("login");
             session.setAttribute("role", (UserDao.getUserByLogin(login) != null) ? UserDao.getUserByLogin(login).getRole().getName() : null);
         }
 
         if(session != null){
-            loginRole=(String)session.getAttribute("role");
+            loginRole = (String)session.getAttribute("role");
         }
 
         if (allowedRoles.size() > 0) {
-            if(session == null || loginRole==null){
+            if(session == null || loginRole == null){
                 return result;
             }
             for (String role : allowedRoles) {
