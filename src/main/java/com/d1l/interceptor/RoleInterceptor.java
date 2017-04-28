@@ -2,7 +2,9 @@ package com.d1l.interceptor;
 
 import com.d1l.dao.RoleDao;
 import com.d1l.dao.UserDao;
+import com.d1l.dao.factory.DaoFactory;
 import com.d1l.model.Role;
+import com.d1l.model.User;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import org.apache.struts2.ServletActionContext;
@@ -58,7 +60,8 @@ public class RoleInterceptor extends AbstractInterceptor {
 
         if (session.getAttribute("login")!=null) {
             String login = (String) session.getAttribute("login");
-            session.setAttribute("role", (UserDao.getUserByLogin(login) != null) ? UserDao.getUserByLogin(login).getRole().getName() : null);
+            User user = DaoFactory.getInstance().getUserDao().getUserByLogin(login);
+            session.setAttribute("role", (user != null) ? user.getRole().getName() : null);
         }
 
         if(session != null){

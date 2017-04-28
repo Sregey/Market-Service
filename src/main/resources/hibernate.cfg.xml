@@ -8,27 +8,24 @@
             <property name="hibernate.connection.driver_class">
                 com.mysql.jdbc.Driver
             </property>
-            <!--jdbc:mysql://localhost:3306/marketservice-->
-            <!--jdbc:mysql://mysql38961-mysqlspp-pushnov.mycloud.by:3306/marketservice-->
             <property name="hibernate.connection.url">
-                jdbc:mysql://localhost:3306/marketservice
+                jdbc:mysql://localhost:3306/job_service
             </property>
             <property name="hibernate.connection.username">root</property>
             <property name="hibernate.connection.password">987654321</property> <!--mgTpchSw15-->
             <property name="hibernate.connection.pool_size">10</property>
             <property name="show_sql">true</property>
-            <property name="dialect">
-                org.hibernate.dialect.MySQLDialect
-            </property>
+            <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
             <property name="hibernate.hbm2ddl.auto">update</property>
-            <mapping class="com.d1l.model.Item" />
-            <mapping class="com.d1l.model.Supplier" />
+            <mapping class="com.d1l.model.Vacancy" />
+            <mapping class="com.d1l.model.FeedbackVacancy" />
+            <mapping class="com.d1l.model.Company" />
+            <mapping class="com.d1l.model.Status" />
+            <mapping class="com.d1l.model.Resume" />
             <mapping class="com.d1l.model.Category" />
             <mapping class="com.d1l.model.Customer" />
-            <mapping class="com.d1l.model.Order" />
-            <mapping class="com.d1l.model.OrderItem" />
+            <mapping class="com.d1l.model.Feedback" />
             <mapping class="com.d1l.model.Role" />
             <mapping class="com.d1l.model.User" />
-            <mapping class="com.d1l.model.Market" />
         </session-factory>
     </hibernate-configuration>

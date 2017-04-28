@@ -63,10 +63,10 @@ INSERT INTO `customer` (`id`, `firstname`, `lastname`, `middlename`, `user_id`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item`
+-- Table structure for table `vacancy`
 --
 
-CREATE TABLE `item` (
+CREATE TABLE `vacancy` (
   `id` int(11) NOT NULL,
   `name` varchar(250) NOT NULL,
   `price` int(11) NOT NULL,
@@ -100,10 +100,10 @@ INSERT INTO `market` (`id`, `name`, `address`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Table structure for table `feedback`
 --
 
-CREATE TABLE `order` (
+CREATE TABLE `feedback` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `date` datetime NOT NULL
@@ -145,10 +145,10 @@ INSERT INTO `role` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supplier`
+-- Table structure for table `company`
 --
 
-CREATE TABLE `supplier` (
+CREATE TABLE `company` (
   `id` int(11) NOT NULL,
   `company_name` varchar(200) NOT NULL,
   `user_id` int(11) NOT NULL
@@ -197,9 +197,9 @@ ALTER TABLE `customer`
   ADD KEY `fk_customer_user1_idx` (`user_id`);
 
 --
--- Indexes for table `item`
+-- Indexes for table `vacancy`
 --
-ALTER TABLE `item`
+ALTER TABLE `vacancy`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_UNIQUE` (`id`),
   ADD KEY `fk_detail_car1_idx` (`category_id`),
@@ -214,9 +214,9 @@ ALTER TABLE `market`
   ADD UNIQUE KEY `id_UNIQUE` (`id`);
 
 --
--- Indexes for table `order`
+-- Indexes for table `feedback`
 --
-ALTER TABLE `order`
+ALTER TABLE `feedback`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_UNIQUE` (`id`),
   ADD KEY `fk_order_customer1_idx` (`customer_id`);
@@ -238,9 +238,9 @@ ALTER TABLE `role`
   ADD UNIQUE KEY `id_UNIQUE` (`id`);
 
 --
--- Indexes for table `supplier`
+-- Indexes for table `company`
 --
-ALTER TABLE `supplier`
+ALTER TABLE `company`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_UNIQUE` (`id`),
   ADD KEY `fk_supplier_user1_idx` (`user_id`);
@@ -268,9 +268,9 @@ ALTER TABLE `category`
 ALTER TABLE `customer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `item`
+-- AUTO_INCREMENT for table `vacancy`
 --
-ALTER TABLE `item`
+ALTER TABLE `vacancy`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `market`
@@ -278,9 +278,9 @@ ALTER TABLE `item`
 ALTER TABLE `market`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `order`
+-- AUTO_INCREMENT for table `feedback`
 --
-ALTER TABLE `order`
+ALTER TABLE `feedback`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `order_item`
@@ -293,9 +293,9 @@ ALTER TABLE `order_item`
 ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `supplier`
+-- AUTO_INCREMENT for table `company`
 --
-ALTER TABLE `supplier`
+ALTER TABLE `company`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
@@ -314,20 +314,20 @@ ALTER TABLE `customer`
   ADD CONSTRAINT `fk_customer_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `item`
+-- Constraints for table `vacancy`
 --
-ALTER TABLE `item`
+ALTER TABLE `vacancy`
   ADD CONSTRAINT `FK96iigy3y320nje6lmwnkbms5o` FOREIGN KEY (`market_id`) REFERENCES `market` (`id`),
-  ADD CONSTRAINT `FKb7u670o2icikvkqn490qdxhv` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`),
+  ADD CONSTRAINT `FKb7u670o2icikvkqn490qdxhv` FOREIGN KEY (`supplier_id`) REFERENCES `company` (`id`),
   ADD CONSTRAINT `FKsauwl811yvfesyqg3hwral5u8` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
   ADD CONSTRAINT `fk_detail_car1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_detail_supplier1` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_detail_supplier1` FOREIGN KEY (`supplier_id`) REFERENCES `company` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_detail_warhouse1` FOREIGN KEY (`market_id`) REFERENCES `market` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `order`
+-- Constraints for table `feedback`
 --
-ALTER TABLE `order`
+ALTER TABLE `feedback`
   ADD CONSTRAINT `FKm4aheo3fanpyk8flawosdpb53` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
   ADD CONSTRAINT `fk_order_customer1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -335,13 +335,13 @@ ALTER TABLE `order`
 -- Constraints for table `order_item`
 --
 ALTER TABLE `order_item`
-  ADD CONSTRAINT `fk_order_item_detail1` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_order_item_order1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_order_item_detail1` FOREIGN KEY (`item_id`) REFERENCES `vacancy` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_order_item_order1` FOREIGN KEY (`order_id`) REFERENCES `feedback` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `supplier`
+-- Constraints for table `company`
 --
-ALTER TABLE `supplier`
+ALTER TABLE `company`
   ADD CONSTRAINT `FK2esrip3liy0mosioknc61rujr` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `fk_supplier_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 

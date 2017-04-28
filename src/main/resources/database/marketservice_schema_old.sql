@@ -66,9 +66,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `marketservice`.`supplier`
+-- Table `marketservice`.`company`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `marketservice`.`supplier` (
+CREATE TABLE IF NOT EXISTS `marketservice`.`company` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `company_name` VARCHAR(200) NOT NULL,
   `user_id` INT NOT NULL,
@@ -107,9 +107,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `marketservice`.`item`
+-- Table `marketservice`.`vacancy`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `marketservice`.`item` (
+CREATE TABLE IF NOT EXISTS `marketservice`.`vacancy` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(250) NOT NULL,
   `price` INT NOT NULL,
@@ -134,16 +134,16 @@ CREATE TABLE IF NOT EXISTS `marketservice`.`item` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_detail_supplier1`
     FOREIGN KEY (`supplier_id`)
-    REFERENCES `marketservice`.`supplier` (`id`)
+    REFERENCES `marketservice`.`company` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `marketservice`.`order`
+-- Table `marketservice`.`feedback`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `marketservice`.`order` (
+CREATE TABLE IF NOT EXISTS `marketservice`.`feedback` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `customer_id` INT NOT NULL,
   `date` DATETIME NOT NULL,
@@ -172,12 +172,12 @@ CREATE TABLE IF NOT EXISTS `marketservice`.`order_item` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   CONSTRAINT `fk_order_item_order1`
     FOREIGN KEY (`order_id`)
-    REFERENCES `marketservice`.`order` (`id`)
+    REFERENCES `marketservice`.`feedback` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_item_detail1`
     FOREIGN KEY (`item_id`)
-    REFERENCES `marketservice`.`item` (`id`)
+    REFERENCES `marketservice`.`vacancy` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
